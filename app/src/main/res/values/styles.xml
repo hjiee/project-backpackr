@@ -8,4 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!--Base application noaction bar theme-->
+    <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--status bar background color-->
+        <item name="android:statusBarColor">@color/colorWhite</item>
+        <!--staus bar text color-->
+        <item name="android:windowLightStatusBar">@color/colorBlack</item>
+    </style>
+
+    <!--Index-->
+    <style name="TitleTheme">
+        <item name="android:textColor">#202040</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrblack</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+
+    <style name="SellerTheme">
+        <item name="android:textColor">#ABABC4</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrbold</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
 </resources>
