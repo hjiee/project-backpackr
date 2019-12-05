@@ -7,4 +7,11 @@
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+
+    <color name="colorDark">#202040</color>
+    <color name="colorBlueGrey">#ABABC4</color>
+    <color name="colorPaleGrey">#F6F6FA</color>
+    <color name="colorDarkSkyBlue">#4090E2</color>
+    <color name="colorCoralPink">#FF586C</color>
+
 </resources>
