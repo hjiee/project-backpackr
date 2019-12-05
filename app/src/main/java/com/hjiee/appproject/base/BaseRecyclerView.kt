@@ -13,7 +13,7 @@ import com.hyden.util.RecyclerDiffUtil
 class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
         private val layoutId: Int,
-        private val bindingVariableId: Int?,
+        private val bindingVariableId: Int? = 0,
         private val event : ItemClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
@@ -46,9 +46,6 @@ class BaseRecyclerView {
                 }
             }
         }
-
-
-
     }
 
     abstract class ViewHolder<B : ViewDataBinding>(
@@ -59,7 +56,7 @@ class BaseRecyclerView {
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {
 
-        val binding = DataBindingUtil.bind<B>(itemView)
+        private val binding = DataBindingUtil.bind<B>(itemView)
 
 
         fun onBind(item: Any?) {

@@ -4,6 +4,7 @@
 
     <data>
 
+
         <variable
             name="vm"
             type="com.hjiee.appproject.view.DetailViewModel" />
@@ -13,5 +14,126 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--썸네일 이미지-->
+                <!--            <ImageView-->
+                <!--                android:id="@+id/iv_detail"-->
+                <!--                loadUrl="@{vm.detailInfo.thumbnail_720}"-->
+                <!--                android:layout_width="375dp"-->
+                <!--                android:layout_height="375dp"-->
+                <!--                app:layout_constraintBottom_toTopOf="@+id/tv_seller"-->
+                <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--                app:layout_constraintRight_toRightOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="parent"-->
+                <!--                app:layout_constraintVertical_chainStyle="packed" />-->
+
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_thumnail"
+                    bindPages="@{vm.thumbnailList}"
+                    android:layout_width="match_parent"
+                    android:layout_height="375dp"
+                    android:orientation="horizontal"
+                    android:scrollIndicators="bottom"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+
+                <!--게시글 작성자-->
+                <TextView
+                    android:id="@+id/tv_seller"
+                    style="@style/DetailSellerTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.seller}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_title"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_thumnail" />
+
+                <!--제목-->
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/DetailTitleTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.title}"
+                    app:layout_constraintBottom_toTopOf="@+id/ll_cost"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_seller" />
+
+                <LinearLayout
+                    android:id="@+id/ll_cost"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_description"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+                    <!--할인율-->
+                    <TextView
+                        style="@style/DetailDiscountRateTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.detailInfo.discount_rate}" />
+
+                    <!--할인가격-->
+                    <TextView
+                        style="@style/DetailDiscountCostTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.detailInfo.discount_cost}" />
+
+                    <!--원가-->
+                    <TextView
+                        android:id="@+id/tv_cost"
+                        style="@style/DetailDiscountCostTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.detailInfo.cost}" />
+
+                </LinearLayout>
+
+                <!--제품 설명-->
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.description}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_cost" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fb_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorBlack"
+            android:src="@drawable/ic_close"
+            app:tint="@color/colorWhite"
+            app:borderWidth="0dp"
+            android:alpha="0.2"
+            app:fabSize="mini"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

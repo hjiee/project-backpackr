@@ -8,20 +8,35 @@ import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.request.Request
 import com.bumptech.glide.request.RequestOptions
 import com.hjiee.appproject.R
+import com.hjiee.appproject.util.ImageTransformType
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
-@BindingAdapter(value = ["loadUrl"])
-fun ImageView.loadUrl(url: String?) {
+@BindingAdapter(value = ["loadUrl","tranformType"])
+fun ImageView.loadUrl(
+    url: String?,
+    type: ImageTransformType?
+) {
     url?.let {
         val multiTransformation = MultiTransformation<Bitmap>(
-            RoundedCornersTransformation(14,0)
+            RoundedCornersTransformation(14, 0)
         )
-        Glide.with(this)
+        val imageRequestBulider = Glide.with(this)
             .load(it)
             .error(R.drawable.baseline_storefront_24)
-            .apply(RequestOptions.bitmapTransform(multiTransformation))
-            .override(172,172)
-//            .apply(RequestOptions.fitCenterTransform().centerCrop())
-            .into(this)
+
+        imageRequestBulider.apply {
+            when (type) {
+                ImageTransformType.ROUND -> {
+                    apply(RequestOptions.bitmapTransform(multiTransformation))
+                }
+                ImageTransformType.FIT -> {
+                    apply(RequestOptions.fitCenterTransform().centerCrop())
+                }
+            }
+
+        }.let { it.into(this) }
+
+
     }
 }
+

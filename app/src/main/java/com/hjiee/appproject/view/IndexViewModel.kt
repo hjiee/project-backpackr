@@ -4,13 +4,14 @@ import androidx.core.util.LogWriter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hjiee.appproject.base.BaseViewModel
 import com.hjiee.appproject.data.remote.network.Body
 import com.hjiee.appproject.data.repository.ProductRepository
 import com.hyden.util.LogUtil.LogW
 
 class IndexViewModel(
     private val productRepository: ProductRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
 
     private val _productsInfo = MutableLiveData<List<Body>>()
@@ -29,23 +30,25 @@ class IndexViewModel(
     fun loadProducts(
         page: Int = 1
     ) {
-        productRepository.loadProducts(
-            page,
-            success = { data ->
-                if (_isMore.value ?: false) {
-                    // 더불러오기
-                    _productsInfo.value = _productsInfo.value?.let {
-                        it.toMutableList().apply {
-                            addAll(data)
+        addDisposable(
+            productRepository.loadProducts(
+                page,
+                success = { data ->
+                    if (_isMore.value ?: false) {
+                        // 더불러오기
+                        _productsInfo.value = _productsInfo.value?.let {
+                            it.toMutableList().apply {
+                                addAll(data)
+                            }
                         }
+                    } else {
+                        _productsInfo.value = data
+                        _isMore.value = false
                     }
-                } else {
-                    _productsInfo.value = data
-                    _isMore.value = false
-                }
-            },
-            failure = {
-                LogW(it)
-            })
+                },
+                failure = {
+                    LogW(it)
+                })
+        )
     }
 }

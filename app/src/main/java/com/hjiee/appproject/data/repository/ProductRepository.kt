@@ -12,7 +12,7 @@ class ProductRepository(
     private val productsApi: ProductsApi
 ) : ProductDataSource {
 
-    fun loadProducts(
+    override fun loadProducts(
         page: Int,
         success: (List<Body>) -> Unit,
         failure: (String) -> Unit
@@ -30,7 +30,7 @@ class ProductRepository(
             })
     }
 
-    fun detailProduct(
+    override fun detailInfo(
         id: Int,
         success: (List<Body>) -> Unit,
         failure: (String) -> Unit
