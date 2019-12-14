@@ -5,6 +5,8 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.Request
 import com.bumptech.glide.request.RequestOptions
 import com.hjiee.appproject.R
@@ -18,6 +20,8 @@ fun ImageView.loadUrl(
 ) {
     url?.let {
         val multiTransformation = MultiTransformation<Bitmap>(
+            CenterCrop(),
+            FitCenter(),
             RoundedCornersTransformation(14, 0)
         )
         val imageRequestBulider = Glide.with(this)
@@ -33,10 +37,7 @@ fun ImageView.loadUrl(
                     apply(RequestOptions.fitCenterTransform().centerCrop())
                 }
             }
-
         }.let { it.into(this) }
-
-
     }
 }
 

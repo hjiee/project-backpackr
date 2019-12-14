@@ -41,7 +41,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_index"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             bindItems="@{vm.productsInfo}"
             android:scrollbars="vertical"
@@ -49,6 +49,8 @@
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appbar"
             app:layout_constraintBottom_toBottomOf="parent" />
 

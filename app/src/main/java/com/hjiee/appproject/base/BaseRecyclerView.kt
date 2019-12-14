@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hyden.util.ItemClickListener
 import com.hyden.util.RecyclerDiffUtil
+import kotlinx.android.synthetic.main.activity_detail.view.*
+import kotlinx.android.synthetic.main.recycler_index_item.view.*
 
 class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
@@ -27,7 +29,7 @@ class BaseRecyclerView {
                 bindingVariableId
             ) {}
             holder.itemView.setOnClickListener {
-                event?.onItemClick(list[holder.adapterPosition] as T)
+                event?.onItemClick(list[holder.adapterPosition] as T,holder.itemView.iv_thumbnail_index)
             }
             return holder
         }
