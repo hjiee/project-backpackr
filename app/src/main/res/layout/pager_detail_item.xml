@@ -21,6 +21,7 @@
             tranformType="@{ImageTransformType.FIT}"
             android:layout_width="0dp"
             android:layout_height="375dp"
+            android:transitionName="@string/image_transition_name"
             app:layout_constraintBottom_toTopOf="@+id/tv_seller"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
