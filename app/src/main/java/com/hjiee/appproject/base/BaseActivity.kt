@@ -6,18 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.hyden.util.LogUtil.LogW
+import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity<B : ViewDataBinding>(
     private val layoutId : Int
 ) : AppCompatActivity() {
 
     lateinit var binding: B
+    val compositeDisposable = CompositeDisposable()
 
     abstract fun initBind()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LogW("onCreate")
         binding = DataBindingUtil.inflate(layoutInflater,layoutId,null,false)
         setContentView(binding.root)
         binding.lifecycleOwner = this
@@ -25,12 +26,12 @@ abstract class BaseActivity<B : ViewDataBinding>(
 
     override fun onStart() {
         super.onStart()
-
-        LogW("onStart")
+        compositeDisposable.clear()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LogW("onDestroy")
+        compositeDisposable.dispose()
     }
+
 }

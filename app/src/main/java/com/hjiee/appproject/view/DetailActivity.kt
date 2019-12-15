@@ -1,37 +1,21 @@
 package com.hjiee.appproject.view
 
-import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.Paint
 import android.os.Bundle
-import android.os.Handler
-import android.text.TextUtils
 import android.view.View
-import android.view.animation.AnimationSet
-import android.view.animation.BounceInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.LinearInterpolator
-import androidx.core.app.ActivityCompat
-import androidx.core.view.ViewCompat
+import androidx.core.view.marginBottom
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.Observer
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.slider.Slider
 import com.hjiee.appproject.R
 import com.hjiee.appproject.base.BaseActivity
 import com.hjiee.appproject.base.BaseRecyclerView
-import com.hjiee.appproject.data.remote.network.Body
 import com.hjiee.appproject.databinding.ActivityDetailBinding
 import com.hjiee.appproject.databinding.PagerDetailItemBinding
+import com.hjiee.appproject.ext.setMargins
 import com.hjiee.appproject.util.ConstValueUtil.Companion.CLICKITEMID
-import com.hjiee.appproject.util.ConstValueUtil.Companion.CLICKITEMTHUMBNAIL
-import com.hjiee.appproject.util.ImageTransformType
 import com.hjiee.appproject.util.MyBounceInterpolator
-import com.hjiee.appproject.util.PageChangedCallbackListener
-import com.hyden.ext.loadUrl
 import com.hyden.util.LogUtil.LogW
-import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.pager_detail_item.view.*
 import org.koin.android.ext.android.inject
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_detail) {
@@ -49,12 +33,20 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_det
         initBind()
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        binding.cvNoti.apply {
+            LogW("${binding.btnBuy.height}")
+            LogW("${binding.btnBuy.marginBottom}")
+            setMargins(bottom = binding.btnBuy.height + binding.btnBuy.marginBottom + 40)
+        }
+    }
+
     override fun initBind() {
         binding.apply {
             vm = detailViewModel
             vpThumnail.apply {
                 offscreenPageLimit = 3
-                registerOnPageChangeCallback(PageChangedCallbackListener())
                 adapter = object : BaseRecyclerView.Adapter<String, PagerDetailItemBinding, String>(
                     layoutId = R.layout.pager_detail_item,
                     bindingVariableId = BR.imageUrl
@@ -67,6 +59,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_det
             fbClose.apply {
                 setOnClickListener { finish() }
             }
+
             btnBuy.apply {
                 ObjectAnimator.ofFloat(this, "translationY", valueStartY, valueEndY).apply {
                     duration = valueDuration

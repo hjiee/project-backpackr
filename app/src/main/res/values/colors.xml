@@ -16,4 +16,9 @@
     <color name="colorDarkSkyBlue">#4090E2</color>
     <color name="colorCoralPink">#FF586C</color>
 
+    <color name="colorDarkNavyBlue">#2418182B</color>
+    <color name="colorDark16">#1018182B</color>
+    <color name="colorDarkBlueGrey">#0C18182B</color>
+    <color name="colorDarkBlueGrey4">#0418182B</color>
+
 </resources>

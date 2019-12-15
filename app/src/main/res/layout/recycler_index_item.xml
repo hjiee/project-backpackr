@@ -13,8 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:transitionName="@string/image_transition_name">
+        android:layout_marginBottom="24dp">
 
 
         <!--썸네일 이미지-->
@@ -44,6 +43,7 @@
             android:text="@{body.title}"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:transitionName="@string/title_transition_name"
             app:layout_constraintLeft_toLeftOf="@+id/iv_thumbnail_index"
             app:layout_constraintRight_toRightOf="@+id/iv_thumbnail_index"
             app:layout_constraintTop_toBottomOf="@+id/iv_thumbnail_index" />
@@ -55,6 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{body.seller}"
+            android:transitionName="@string/seller_transition_name"
             app:layout_constraintLeft_toLeftOf="@+id/tv_title"
             app:layout_constraintRight_toRightOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />

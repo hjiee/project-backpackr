@@ -1,16 +1,15 @@
 package com.hjiee.appproject.base
 
+import android.os.SystemClock
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.hjiee.appproject.util.ConstValueUtil.Companion.CLICK_THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.RecyclerDiffUtil
-import kotlinx.android.synthetic.main.activity_detail.view.*
-import kotlinx.android.synthetic.main.recycler_index_item.view.*
 
 class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
@@ -20,6 +19,8 @@ class BaseRecyclerView {
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
         var itemClick : ((T) -> Unit)? = null
+        var CLICK_LAST_TIME = 0L
+
         private var list = listOf<ITEM>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
@@ -29,7 +30,10 @@ class BaseRecyclerView {
                 bindingVariableId
             ) {}
             holder.itemView.setOnClickListener {
-                event?.onItemClick(list[holder.adapterPosition] as T,holder.itemView.iv_thumbnail_index)
+                if(!(SystemClock.elapsedRealtime() - CLICK_LAST_TIME < CLICK_THROTTLE)) {
+                    event?.onItemClick(list[holder.adapterPosition] as T,holder.itemView)
+                }
+                CLICK_LAST_TIME = SystemClock.elapsedRealtime()
             }
             return holder
         }

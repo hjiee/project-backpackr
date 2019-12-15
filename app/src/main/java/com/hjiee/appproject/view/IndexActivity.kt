@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.view.ViewCompat
+import androidx.core.util.Pair
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hyojin.util.EndlessRecyclerViewScrollListener
@@ -38,11 +38,13 @@ class IndexActivity : BaseActivity<ActivityIndexBinding>(R.layout.activity_index
                 Intent(this@IndexActivity, DetailActivity::class.java).apply {
                     putExtra(CLICKITEMID, (item as Body).id)
                     putExtra(CLICKITEMTHUMBNAIL, (item as Body).thumbnail_520)
-                    val optios = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        this@IndexActivity,
-                        view,
-                        ViewCompat.getTransitionName(view) ?: ""
-                    )
+                    val optios =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            this@IndexActivity,
+                            Pair.create(view.findViewById(R.id.iv_thumbnail_index),getString(R.string.image_transition_name)),
+                            Pair.create(view.findViewById(R.id.tv_title),getString(R.string.title_transition_name)),
+                            Pair.create(view.findViewById(R.id.tv_seller),getString(R.string.seller_transition_name))
+                        )
                     startActivity(this, optios.toBundle())
                 }
             }
