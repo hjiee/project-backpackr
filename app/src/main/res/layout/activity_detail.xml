@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="vm"
+            type="com.hjiee.appproject.view.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_thumnail"
+                    bindPages="@{vm.thumbnailList}"
+                    android:layout_width="match_parent"
+                    android:layout_height="375dp"
+                    android:orientation="horizontal"
+                    android:scrollIndicators="bottom"
+                    android:transitionName="@string/image_transition_name"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_thumnail" />
+
+
+                <!--게시글 작성자-->
+                <TextView
+                    android:id="@+id/tv_seller"
+                    style="@style/DetailSellerTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.seller}"
+                    android:transitionName="@string/seller_transition_name"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_title"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_thumnail" />
+
+                <!--제목-->
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/DetailTitleTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.title}"
+                    android:transitionName="@string/title_transition_name"
+                    app:layout_constraintBottom_toTopOf="@+id/ll_cost"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_seller" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_cost"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/view_line"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+                    <!--할인율-->
+                    <TextView
+                        android:id="@+id/tv_discount_rate"
+                        style="@style/DetailDiscountRateTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@{vm.detailInfo.discount_rate}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tv_discount_cost"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--할인가격-->
+                    <TextView
+                        android:id="@+id/tv_discount_cost"
+                        style="@style/DetailDiscountCostTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@{vm.detailInfo.discount_cost}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_discount_rate"
+                        app:layout_constraintRight_toLeftOf="@id/tv_cost"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--원가-->
+                    <TextView
+                        android:id="@+id/tv_cost"
+                        style="@style/DetailDiscountCostTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.detailInfo.cost}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_discount_cost"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_line"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@color/colorPaleGrey2"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_description"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_cost" />
+
+                <!--제품 설명-->
+                <TextView
+                    android:id="@+id/tv_description"
+                    style="@style/DetailDescriptionTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.detailInfo.description}"
+
+                    app:layout_constraintBottom_toTopOf="@+id/cv_noti"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_line" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_noti"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPaleGrey"
+                    app:cardCornerRadius="14dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description">
+
+                    <TextView
+                        android:id="@+id/tv_noti"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/notosanscjkkrbold"
+                        android:text="@string/notification"
+                        android:textColor="@color/colorCoolGrey"
+                        android:lineSpacingMultiplier="1.3"
+                        android:paddingEnd="18dp"
+                        android:paddingStart="18dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="26dp"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/colorCoralPink"
+            android:fontFamily="@font/notosanscjkkrblack"
+            android:text="구매하기"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            app:cornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fb_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0.2"
+            android:backgroundTint="@color/colorBlack"
+            android:src="@drawable/ic_close"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorWhite" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

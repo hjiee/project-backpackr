@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.hjiee.appproject.util.ImageTransformType"/>
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--썸네일 이미지-->
+        <ImageView
+            android:id="@+id/iv_detail"
+            loadUrl="@{imageUrl}"
+            tranformType="@{ImageTransformType.FIT}"
+            android:layout_width="0dp"
+            android:layout_height="375dp"
+            android:transitionName="@string/image_transition_name"
+            app:layout_constraintBottom_toTopOf="@+id/tv_seller"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

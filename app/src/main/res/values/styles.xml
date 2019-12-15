@@ -1,0 +1,91 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!--Base application noaction bar theme-->
+    <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--status bar background color-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!--staus bar text color-->
+        <item name="android:windowLightStatusBar">@color/colorBlack</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <!--Index-->
+    <style name="TitleTheme">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrblack</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="SellerTheme">
+        <item name="android:textColor">@color/colorBlueGrey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrbold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+
+    </style>
+
+    <!--Detail-->
+    <style name="DetailSellerTheme">
+        <item name="android:textColor">@color/colorDarkSkyBlue</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrblack</item>
+        <item name="android:layout_marginStart">26dp</item>
+        <item name="android:layout_marginEnd">22dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
+    <style name="DetailTitleTheme">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="DetailDiscountRateTheme">
+        <item name="android:textColor">@color/colorCoralPink</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="DetailDiscountCostTheme">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="DetailCostTheme">
+        <item name="android:textColor">@color/colorBlueGrey</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/sfprotextbold</item>
+    </style>
+
+    <style name="DetailDescriptionTheme">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/notosanscjkkrbold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:lineSpacingMultiplier">1.8</item>
+    </style>
+</resources>
